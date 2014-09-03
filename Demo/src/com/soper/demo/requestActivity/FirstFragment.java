@@ -1,0 +1,68 @@
+package com.soper.demo.requestActivity;
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request.Method;
+import com.soper.demo.R;
+import com.soper.demo.myAppliction.MyApplication;
+import com.soper.demo.request.JSONRequest;
+import com.soper.demo.requst.build.TestBuild;
+import com.umeng.update.UmengUpdateAgent;
+
+public class FirstFragment extends Fragment {
+
+	private TextView textView;
+
+	// private FirstFragment firstFragment;
+	//
+	// public FirstFragment initFirstFragment() {
+	// if (null == firstFragment) {
+	// firstFragment = new FirstFragment();
+	// }
+	// return firstFragment;
+	// }
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View rootView = inflater.inflate(R.layout.fragment_first, container,
+				false);
+		textView = (TextView) rootView.findViewById(R.id.textView);
+
+		return rootView;
+
+	}
+
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		TestBuild testBuild = new TestBuild(handler);
+		JSONRequest.getInstance()
+				.requestData(null, Method.GET, null, testBuild);
+	}
+
+	private Handler handler = new Handler() {
+		public void handleMessage(Message msg) {
+			String jsonString = (String) msg.obj;
+
+			textView.setText(jsonString.toString());
+			switch (msg.what) {
+
+			default:
+				break;
+			}
+		};
+	};
+
+}
