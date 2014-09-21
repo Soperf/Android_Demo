@@ -1,5 +1,17 @@
 package com.soper.demo;
 
+import roboguice.activity.RoboFragmentActivity;
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
+import android.app.ActionBar.OnNavigationListener;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+
 import com.soper.demo.myAppliction.MyApplication;
 import com.soper.demo.requestActivity.FirstFragment;
 import com.soper.demo.update.updateFragment;
@@ -7,27 +19,8 @@ import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.FeedbackAgent;
 import com.umeng.message.PushAgent;
 import com.umeng.update.UmengUpdateAgent;
-import com.umeng.update.UmengUpdateListener;
-import com.umeng.update.UpdateResponse;
-import com.umeng.update.UpdateStatus;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBar.OnNavigationListener;
-import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
-
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends RoboFragmentActivity {
 
 	private OnNavigationListener navigationListener;
 	private ActionBar actionBar;
@@ -71,8 +64,8 @@ public class MainActivity extends ActionBarActivity {
 		MobclickAgent.onPause(this);
 	}
 
-	private void initActionBar() {
-		actionBar = getSupportActionBar();
+	@SuppressLint("NewApi") private void initActionBar() {
+		actionBar = getActionBar();
 		actionBar.setDisplayShowTitleEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		actionBar.setListNavigationCallbacks(

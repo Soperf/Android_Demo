@@ -1,5 +1,7 @@
 package com.soper.demo.requestActivity;
 
+import roboguice.fragment.RoboFragment;
+import roboguice.inject.InjectView;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -19,25 +21,17 @@ import com.soper.demo.request.JSONRequest;
 import com.soper.demo.requst.build.TestBuild;
 import com.umeng.update.UmengUpdateAgent;
 
-public class FirstFragment extends Fragment {
+public class FirstFragment extends RoboFragment {
 
-	private TextView textView;
+	@InjectView(R.id.textView)
+	TextView textView;
 
-	// private FirstFragment firstFragment;
-	//
-	// public FirstFragment initFirstFragment() {
-	// if (null == firstFragment) {
-	// firstFragment = new FirstFragment();
-	// }
-	// return firstFragment;
-	// }
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_first, container,
 				false);
-		textView = (TextView) rootView.findViewById(R.id.textView);
 
 		return rootView;
 
