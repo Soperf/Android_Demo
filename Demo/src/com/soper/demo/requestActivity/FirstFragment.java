@@ -48,8 +48,8 @@ public class FirstFragment extends RoboFragment {
 
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
-			String jsonString = (String) msg.obj;
-
+			IpData jsonString = (IpData) msg.obj;
+			
 			textView.setText(jsonString.toString());
 			switch (msg.what) {
 

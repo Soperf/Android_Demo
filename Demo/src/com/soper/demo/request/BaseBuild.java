@@ -2,7 +2,7 @@ package com.soper.demo.request;
 
 import java.util.Map;
 
-import org.json.JSONObject;
+import com.alibaba.fastjson.JSONObject;
 
 import android.os.Handler;
 import android.os.Message;
@@ -26,10 +26,12 @@ public abstract class BaseBuild {
 	public abstract boolean parseParam(JSONObject json,
 			Map<String, String> header);
 
-	public void parse(JSONObject json, Map<String, String> header) {
+	public void parse(String json, Map<String, String> header) {
 
-		int status = json.optInt("status");
-		parseParam(json, header);
+//		int status = json.getInteger("status");
+		JSONObject jObject = JSONObject.parseObject(json);
+		
+		parseParam(jObject, header);
 //		if (status == 200) {
 //			parseParam(json, header);
 //		} else {
