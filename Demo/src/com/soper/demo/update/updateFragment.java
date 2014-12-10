@@ -1,7 +1,8 @@
 package com.soper.demo.update;
 
-import roboguice.fragment.RoboFragment;
-import roboguice.inject.InjectView;
+import org.kymjs.aframe.ui.BindView;
+import org.kymjs.aframe.ui.fragment.BaseFragment;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,25 +15,25 @@ import com.soper.demo.R;
 import com.soper.demo.myAppliction.MyApplication;
 import com.umeng.update.UmengUpdateAgent;
 
-public class updateFragment extends RoboFragment {
+public class updateFragment extends BaseFragment {
 
-	@InjectView(R.id.update_button)
+	@BindView(id= R.id.update_button)
 	Button updateButton;
 
 	@Override
-	public void onAttach(Activity activity) {
-		// TODO Auto-generated method stub
-		super.onAttach(activity);
-	}
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	protected View inflaterView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_update, container,
 				false);
 
 		return rootView;
 
+	}
+
+	@Override
+	public void onAttach(Activity activity) {
+		// TODO Auto-generated method stub
+		super.onAttach(activity);
 	}
 
 	@Override

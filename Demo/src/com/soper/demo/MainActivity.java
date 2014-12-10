@@ -1,13 +1,12 @@
 package com.soper.demo;
 
-import roboguice.activity.RoboFragmentActivity;
+import org.kymjs.aframe.ui.activity.KJFragmentActivity;
+import org.kymjs.aframe.ui.fragment.BaseFragment;
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.ActionBar.OnNavigationListener;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -20,10 +19,20 @@ import com.umeng.fb.FeedbackAgent;
 import com.umeng.message.PushAgent;
 import com.umeng.update.UmengUpdateAgent;
 
-public class MainActivity extends RoboFragmentActivity {
+public class MainActivity extends KJFragmentActivity {
 
 	private OnNavigationListener navigationListener;
 	private ActionBar actionBar;
+
+	@Override
+	public void setRootView() {
+		setContentView(R.layout.activity_main);
+	}
+
+	@Override
+	public void changeFragment(BaseFragment arg0) {
+		changeFragment(R.id.container, arg0);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +73,8 @@ public class MainActivity extends RoboFragmentActivity {
 		MobclickAgent.onPause(this);
 	}
 
-	@SuppressLint("NewApi") private void initActionBar() {
+	@SuppressLint("NewApi")
+	private void initActionBar() {
 		actionBar = getActionBar();
 		actionBar.setDisplayShowTitleEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
@@ -78,25 +88,22 @@ public class MainActivity extends RoboFragmentActivity {
 
 	private void initNavigationListener() {
 		navigationListener = new OnNavigationListener() {
-			Fragment fragment;
-			
+			BaseFragment fragment;
 
 			@Override
 			public boolean onNavigationItemSelected(int itemPosition,
 					long itemId) {
-				FragmentTransaction fTransaction = getSupportFragmentManager()
-						.beginTransaction();
 				switch (itemPosition) {
 				case 0:
 					fragment = new FirstFragment();
-					fTransaction.replace(R.id.container, fragment);
-					
+
+					changeFragment(fragment);
+
 					break;
 
 				case 1:
 					fragment = new updateFragment();
-					fTransaction.replace(R.id.container, fragment);
-					fTransaction.addToBackStack(null);
+					changeFragment(fragment);
 					break;
 
 				case 2:
@@ -106,8 +113,7 @@ public class MainActivity extends RoboFragmentActivity {
 				default:
 					break;
 				}
-				
-				fTransaction.commit();
+
 				return false;
 			}
 		};

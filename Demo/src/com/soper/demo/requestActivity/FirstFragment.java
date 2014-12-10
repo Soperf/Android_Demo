@@ -1,34 +1,30 @@
 package com.soper.demo.requestActivity;
 
-import roboguice.fragment.RoboFragment;
-import roboguice.inject.InjectView;
+import org.kymjs.aframe.ui.BindView;
+import org.kymjs.aframe.ui.fragment.BaseFragment;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request.Method;
 import com.soper.demo.R;
-import com.soper.demo.myAppliction.MyApplication;
 import com.soper.demo.request.JSONRequest;
 import com.soper.demo.requst.build.TestBuild;
-import com.umeng.update.UmengUpdateAgent;
 
-public class FirstFragment extends RoboFragment {
+public class FirstFragment extends BaseFragment {
 
-	@InjectView(R.id.textView)
+	@BindView(id=R.id.textView)
 	TextView textView;
 
 
+
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	protected View inflaterView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_first, container,
 				false);
@@ -36,6 +32,7 @@ public class FirstFragment extends RoboFragment {
 		return rootView;
 
 	}
+	
 
 	@Override
 	public void onResume() {
@@ -58,5 +55,7 @@ public class FirstFragment extends RoboFragment {
 			}
 		};
 	};
+
+
 
 }
