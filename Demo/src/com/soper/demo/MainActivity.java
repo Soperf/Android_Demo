@@ -29,6 +29,8 @@ public class MainActivity extends KJFragmentActivity {
 		setContentView(R.layout.activity_main);
 	}
 
+	//test codereview
+	
 	@Override
 	public void changeFragment(BaseFragment arg0) {
 		changeFragment(R.id.container, arg0);
